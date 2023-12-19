@@ -1,0 +1,49 @@
+{
+  "name": "@dlghq/dialog-api",
+  "version": "1.901.0",
+  "description": "dialog messenger api",
+  "main": "js/index.js",
+  "files": [
+    "js",
+    "proto",
+    "include"
+  ],
+  "scripts": {
+    "prepare": "node scripts/build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": " https://github.com/salute-to-business-public/dialog-api-schema.git"
+  },
+  "author": "Nikita Gusakov <nkt@dlg.im>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": " https://github.com/salute-to-business-public/dialog-api-schema/issues"
+  },
+  "homepage": "https://dialogs.github.io/api-schema",
+  "peerDependencies": {
+    "grpc": "^1.24.2"
+  },
+  "dependencies": {
+    "@grpc/proto-loader": "^0.5.3",
+    "protobufjs": "^6.8.8"
+  },
+  "devDependencies": {
+    "@semantic-release/commit-analyzer": "7.0.0",
+    "@semantic-release/exec": "4.0.0",
+    "@semantic-release/git": "8.0.0",
+    "@semantic-release/github": "6.0.1",
+    "@semantic-release/npm": "6.0.0",
+    "@semantic-release/release-notes-generator": "7.3.5",
+    "mkdirp": "0.5.1"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/git",
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ]
+  }
+}

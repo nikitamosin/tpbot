@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package dialog;
+
+import "scalapb/scalapb.proto";
+import "google/protobuf/descriptor.proto";
+
+option go_package = "dialog";
+option java_package = "im.dlg.grpc.services";
+
+message UUIDValue {
+  int64 msb = 1;
+  int64 lsb = 2;
+}
+
+message DialogOptions {
+  string log = 1;
+  bool required = 2;
+}
+
+extend google.protobuf.FieldOptions {
+  DialogOptions dlg = 100001;
+}
+
+/// server timestamp when state was created or modified
+message DataClock {
+  int64 clock = 1;
+}

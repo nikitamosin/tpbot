@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package dialog;
+
+// Schema-less API that is useful for external integrations
+
+import "google/protobuf/wrappers.proto";
+import "google/api/annotations.proto";
+import "definitions.proto";
+import "scalapb/scalapb.proto";
+
+option go_package = "dialog";
+option java_package = "im.dlg.grpc.services";
+
+message RequestRawRequest {
+    option (scalapb.message).extends = "im.dlg.grpc.GrpcRequest";
+    google.protobuf.StringValue service = 1 [(dlg).log="visible"];
+    google.protobuf.BytesValue body = 2 [(dlg).log="hidden"];
+}
+
+message ResponseRawRequest {
+    option (scalapb.message).extends = "im.dlg.grpc.GrpcResponse";
+    google.protobuf.BytesValue body = 1;
+}
+
+service RawAPI {
+    rpc RawRequest (RequestRawRequest) returns (ResponseRawRequest) {
+        option (google.api.http) = {
+            post: "/v1/grpc/RawAPI/RawRequest"
+            body: "*"
+        };
+    }
+}

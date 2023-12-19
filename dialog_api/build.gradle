@@ -1,0 +1,139 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        google()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.5'
+    }
+}
+
+plugins {
+    id "com.jfrog.bintray" version "1.8.4"
+    id 'com.palantir.git-version' version '0.12.2'
+}
+
+version gitVersion()
+
+apply plugin: 'java'
+apply plugin: 'com.google.protobuf'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+sourceSets {
+    main {
+        proto {
+            srcDir 'include'
+            srcDir 'proto'
+        }
+    }
+}
+
+jar {
+    exclude '**.proto'
+    exclude 'google'
+    exclude 'com/google'
+}
+
+repositories {
+    google()
+    jcenter()
+    mavenCentral()
+    maven { url "https://maven.google.com" }
+    maven { url "https://jitpack.io" }
+    maven { url "http://dialog.bintray.com/maven" }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'io.grpc:grpc-okhttp:1.12.0'
+    compile 'io.grpc:grpc-protobuf:1.12.0'
+    compile 'io.grpc:grpc-stub:1.12.0'
+    compile "com.google.api.grpc:proto-google-common-protos:1.0.0"
+}
+
+ext {
+    artifact = 'java-api-schema'
+    libraryDescription = 'Dialog API Schema'
+    gitUrl = 'https://github.com/salute-to-business-public/dialog-api-schema'
+    libraryVersion = version
+    bintrayUser = System.env.bintrayUser != null ? System.env.bintrayUser : ""
+    bintrayPassword = System.env.bintrayPassword != null ? System.env.bintrayPassword : ""
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.6.0"
+    }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.12.0'
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins { grpc {} }
+    }
+}
+
+// bintray
+apply plugin: 'com.jfrog.bintray'
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            groupId group
+            artifactId artifactId
+            version version
+        }
+    }
+}
+
+bintray {
+    user = bintrayUser
+    key = bintrayPassword
+    override = false
+
+    configurations = ['archives']
+
+    pkg {
+        userOrg = 'dialog'
+        repo = 'maven'
+        name = artifact
+        desc = libraryDescription
+        websiteUrl = 'https://dlg.im'
+        vcsUrl = gitUrl
+        licenses = ["Dialog"]
+        publish = true
+        publicDownloadNumbers = true
+        version {
+            desc = libraryDescription
+            gpg {
+                sign = true //Determines whether to GPG sign the files. The default is false
+                if (hasProperty('bintrayGpgPassword')) {
+                    bintray.pkg.version.gpg.passphrase = bintrayGpgPassword
+                }
+            }
+        }
+    }
+}

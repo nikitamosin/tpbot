@@ -1,0 +1,606 @@
+{
+  "type": "object",
+  "properties": {
+    "discover.isEnabled": {
+      "type": "boolean",
+      "title": "Activates discover",
+      "default": true,
+      "description": "if true = discover tab is enable for users"
+    },
+    "discover.url": {
+      "type": "string",
+      "title": "Discover web-view URL",
+      "default": null
+    },
+    "contacts.isEnabled": {
+      "type": "boolean",
+      "title": "Enable contacts",
+      "default": true,
+      "description": "if true = contacts will be available for users"
+    },
+    "isHidingContentInTaskManagerEnabled": {
+      "type": "boolean",
+      "title": "Hide app content in task manager",
+      "default": true,
+      "description": "if true = app content will be hidden in task manager, disabled screenshot, video record program cant catch UI"
+    },
+    "passCode.isEnabled": {
+      "type": "boolean",
+      "title": "User can or cann`t setup pass code in his profile",
+      "default": false
+    },
+    "passcode.failedAttemptsTillBlocking": {
+      "type": "integer",
+      "title": "Wrong unlocks count before disabling pass code input",
+      "default": 3
+    },
+    "passcode.failedAttemptsTimeoutMillis": {
+      "type": "integer",
+      "title": "Default incremental timeout after each wrong pass code unlock",
+      "default": 5000
+    },
+    "passcode.obligatorySetup": {
+      "type": "boolean",
+      "title": "User must obligatory setup pass code after resume app or success authorization",
+      "default": false
+    },
+    "isMultifactorauthActive": {
+      "type": "boolean",
+      "title": "Activates Multifactorauth",
+      "default": false,
+      "description": "if true = Multifactorauth is enable for users (factors are tuned on server's config file)"
+    },
+    "userProfile.nameMinLength": {
+      "type": "integer",
+      "title": "Minimum length of user's profile name",
+      "default": 3
+    },
+    "userProfile.nameMaxLength": {
+      "type": "integer",
+      "title": "Maximum length of user's profile name",
+      "default": 128
+    },
+    "userProfile.nicknameMinLength": {
+      "type": "integer",
+      "title": "Minimum length of user's profile nickname",
+      "default": 3
+    },
+    "userProfile.nicknameMaxLength": {
+      "type": "integer",
+      "title": "Maximum length of user's profile nickname",
+      "default": 32
+    },
+    "userProfile.nicknameAllowedChars": {
+      "type": "string",
+      "title": "List of allowed chars in nickname",
+      "default": "abcdefghijklmnopqrstuvwxyz0123456789-_."
+    },
+    "userProfile.aboutMinLength": {
+      "type": "integer",
+      "title": "Minimum length of user's profile about",
+      "default": 0
+    },
+    "userProfile.aboutMaxLength": {
+      "type": "integer",
+      "title": "Maximum length of user's profile about",
+      "default": 3000
+    },
+    "userProfile.avatarFileMaxSize": {
+      "type": "integer",
+      "title": "Maximum size of user's profile avatar",
+      "default": 1048576
+    },
+    "userProfile.isEnabledEditProfile": {
+      "type": "boolean",
+      "title": "User can edit his profile or not",
+      "default": false
+    },
+    "userProfile.isShowProfilePhone": {
+      "type": "boolean",
+      "title": "User can show phone number",
+      "default": true
+    },
+    "userProfile.isFullNameEditable": {
+      "type": "boolean",
+      "title": "User can edit his full name or not",
+      "default": false
+    },
+    "userProfile.isNickNameEditable": {
+      "type": "boolean",
+      "title": "User can edit his nick name or not",
+      "default": false
+    },
+    "userProfile.isGlobalSettingsNotificationEnabled": {
+      "type": "boolean",
+      "title": "User can edit global settings notification his profile or not",
+      "default": true
+    },
+    "userProfile.isSecuritySettingsEnabled": {
+      "type": "boolean",
+      "title": "User can or cann`t work with security settings in his profile",
+      "default": true
+    },
+    "userProfile.customProfile.isEnabled": {
+      "type": "boolean",
+      "title": "Activates custom profile",
+      "default": false
+    },
+    "userProfile.customProfile.schema": {
+      "type": "string",
+      "title": "Custom profile schema",
+      "default": null
+    },
+    "groups.isProfileEditEnabled": {
+      "type": "boolean",
+      "title": "User can edit group profile or not",
+      "default": true
+    },
+    "groups.publicUrlPrefix": {
+      "type": "string",
+      "title": "Prefix for generate public's url",
+      "default": null
+    },
+    "groups.titleMinLength": {
+      "type": "integer",
+      "title": "Minimum length of group's title",
+      "default": 5
+    },
+    "groups.titleMaxLength": {
+      "type": "integer",
+      "title": "Maximum length of group's title",
+      "default": 128
+    },
+    "groups.aboutMaxLength": {
+      "type": "integer",
+      "title": "Maximum length of group's about",
+      "default": 3000
+    },
+    "groups.shortNameMinLength": {
+      "type": "integer",
+      "title": "Minimum length of group's shortname",
+      "default": 1
+    },
+    "groups.shortNameMaxLength": {
+      "type": "integer",
+      "title": "Maximum length of group's shortname",
+      "default": 32
+    },
+    "groups.avatarFileMaxSize": {
+      "type": "integer",
+      "title": "Maximum size of group's avatar",
+      "default": 1048576
+    },
+    "groups.isGroupPermissionsEditingEnabled": {
+      "type": "boolean",
+      "title": "Ability to edit group members permissions",
+      "default": false
+    },
+    "groups.permissions.canLeaveEnabled": {
+      "type": "boolean",
+      "title": "false - user can leave from any Group/Channel even official, true - user can leave only if has LEAVE permission",
+      "default": true
+    },
+    "groups.isInviteLinkEnabled": {
+      "type": "boolean",
+      "title": "Enables invite link in group profile",
+      "default": false
+    },
+    "groups.isIntegrationLinkEnabled": {
+      "type": "boolean",
+      "title": "Enables integration link in group profile",
+      "default": false
+    },
+    "groups.membersCountLimit": {
+      "type": "integer",
+      "title": "Maximum number of members that can be joined/invited to a group",
+      "default": 10000
+    },
+    "channels.membersCountLimit": {
+      "type": "integer",
+      "title": "Maximum number of members that can be joined/invited to a channel",
+      "default": 1000000
+    },
+    "spaces.isEnabled": {
+      "type": "boolean",
+      "title": "Activates Spaces",
+      "default": false,
+      "description": "true - for product app, false - in platform"
+    },
+    "spaces.aboutMaxLength": {
+      "type": "integer",
+      "title": "Maximum length of space's about",
+      "default": 280
+    },
+    "spaces.titleMaxLength": {
+      "type": "integer",
+      "title": "Maximum length of space's title",
+      "default": 64
+    },
+    "spaces.shortnameMaxLength": {
+      "type": "integer",
+      "title": "Maximum length of space's shortname",
+      "default": 32
+    },
+    "chat.mentionsInput.isEnabled": {
+      "type": "boolean",
+      "title": "Show or hide mentions in chat input bar",
+      "default": true,
+      "description": "if true = mentions in chat are enable for users"
+    },
+    "chat.bubbles": {
+      "type": "boolean",
+      "title": "Activates bubbles in chat",
+      "default": true,
+      "description": "if true = bubbles in chat are enable for users"
+    },
+    "chat.documentPhotoEnabled": {
+      "type": "boolean",
+      "title": "Activates document photo extension support",
+      "default": true,
+      "description": "Show photo content instead of the document if possible"
+    },
+    "chat.stickersEnabled": {
+      "type": "boolean",
+      "title": "Activates stickers in chat",
+      "default": true,
+      "description": "Show or hide sending stickers feature"
+    },
+    "chat.sharedMedia.isEnabled": {
+      "type": "boolean",
+      "title": "Activates shared media scene for chat",
+      "default": false
+    },
+    "chat.messageMaxLength": {
+      "type": "integer",
+      "title": "Max length of chat message",
+      "default": 4096
+    },
+    "chat.bubbleGroupingTimeGap": {
+      "type": "integer",
+      "title": "Time gap in milliseconds to break bubble message group",
+      "default": 300000
+    },
+    "badges.menu.dialogs": {
+      "type": "boolean",
+      "title": "Activates budges in chat",
+      "default": true,
+      "description": "if true = budges in chat are enable for users"
+    },
+    "messaging.isPickerEnabled": {
+      "type": "boolean",
+      "title": "Activates picker on message screen",
+      "default": true
+    },
+    "messaging.swipeToReply": {
+      "type": "boolean",
+      "title": "Activates swipe to reply on message",
+      "default": true
+    },
+    "messaging.isReactionsEnabled": {
+      "type": "boolean",
+      "title": "Activates reactions visibility",
+      "default": true,
+      "description": "if true = reaction in chat are visible/editable for users"
+    },
+    "messaging.listAvailableReactions": {
+      "type": "string",
+      "title": "List of available reaction to set on message. Separated with ':'.",
+      "default": "\uD83D\uDE0A:\uD83D\uDE41:\uD83D\uDE00:\uD83D\uDE21:\uD83D\uDC4C:\uD83D\uDC4D:\uD83D\uDC4E"
+    },
+    "messaging.forwards.isReactionsEnabled": {
+      "type": "boolean",
+      "title": "Activates reactions visibility for Forwarded Messages",
+      "default": false,
+      "description": "if true = reaction in chat are visible/editable on Forwarded Messages. Reason: server can't return reactions for ReferencedMessages"
+    },
+    "messaging.forwards.recipientsLimit": {
+      "type": "integer",
+      "title": "Max recipients for forwarding",
+      "default": 20
+    },
+    "isSwipeBackEnabled": {
+      "type": "boolean",
+      "title": "Activates swipe(left to right) between fragments which means back button click",
+      "default": true,
+      "description": "if true = swipe is enable for users"
+    },
+    "isCertAuthActive": {
+      "type": "boolean",
+      "title": "Activates selecting a certificate for authorization",
+      "default": true,
+      "description": "if true = button for selecting a certificate is available on the authorization screen"
+    },
+    "isAutoDetectEndpointEnabled": {
+      "type": "boolean",
+      "title": "Enable auto detect endpoint at authentification process",
+      "default": true,
+      "description": "if true = auto detect endpoint enabled"
+    },
+    "fileUploading.perfectRatio": {
+      "type": "number",
+      "title": "The ratio of file download time (in ms) to size (in bytes)",
+      "default": 0.00075,
+      "description": "Required for dynamically resizing following chunks when loading. This ratio is compared with the ratio of the previous batch of chunks, therefore it is concluded whether it is necessary to increase or decrease the size of following chunks"
+    },
+    "fileUploading.maximumChunkSize": {
+      "type": "integer",
+      "title": "Maximum size of Chunk (in bytes) for sending to server",
+      "default": 5000000
+    },
+    "fileUploading.maxFileSizeBytes": {
+      "type": "integer",
+      "title": "Maximum file size (in bytes) for sending to server",
+      "default": 2147483647
+    },
+    "fileUploading.minimumChunkSize": {
+      "type": "integer",
+      "title": "Minimum size of Chunk (in bytes) for sending to server",
+      "default": 500000
+    },
+    "fileUploading.image.resolution": {
+      "type": "integer",
+      "title": "Maximum image resolution",
+      "default": 1280
+    },
+    "fileUploading.image.qualityPercents": {
+      "type": "integer",
+      "title": "Image quality in percents",
+      "default": 87
+    },
+    "upload.uploadEnabled": {
+      "type": "boolean",
+      "title": "Determines whether the user can upload the file",
+      "default": true
+    },
+    "search.profileSearchEnabled": {
+      "type": "boolean",
+      "title": "Determines whether the user can perform profile search",
+      "default": true
+    },
+    "search.localSearchCount": {
+      "type": "integer",
+      "title": "Determines amount of local search results",
+      "default": 10
+    },
+    "search.localSearchUsersFirst": {
+      "type": "boolean",
+      "title": "Defines the order for local search results. (If true -  users first)",
+      "default": true
+    },
+    "search.globalSearchUsersFirst": {
+      "type": "boolean",
+      "title": "Defines the order for global search results. (If true -  users first)",
+      "default": false
+    },
+    "search.users.secondaryInfo.customProfileKey": {
+      "type": "string",
+      "title": "Defines key for user data custom profile.",
+      "default": null,
+      "description": "if installed, value from custom profile with the key will be displayed in search user cell"
+    },
+    "notifications.android.isEnable": {
+      "type": "boolean",
+      "title": "Toggle switch to enable / disable the display of push notifications",
+      "default": true
+    },
+    "notifications.history.isEnabled": {
+      "type": "boolean",
+      "title": "Activates notifications history list",
+      "default": false
+    },
+    "notifications.web.newMessageAudioUrl": {
+      "type": "string",
+      "title": "URL to an audio file for a new message notification",
+      "default": null,
+      "description": "Overrides a default app's audio"
+    },
+    "notifications.web.newMessageIconUrl": {
+      "type": "string",
+      "title": "URL to icon image for a new message notification",
+      "default": null,
+      "description": "Overrides a default app's icon"
+    },
+    "notifications.web.newMessageVibrationPattern": {
+      "type": "string",
+      "title": "Vibration pattern a new message notification",
+      "default": null,
+      "description": "Overrides a default app's vibration pattern. Values are serialized as an array of strings in JSON format"
+    },
+    "markdown.inChatsEnabled": {
+      "type": "boolean",
+      "title": "Enabling markdown in chats",
+      "default": true
+    },
+    "markdown.inLastMessagesEnabled": {
+      "type": "boolean",
+      "title": "Enabling markdown in last messages",
+      "default": true
+    },
+    "markdown.inProfileEnabled": {
+      "type": "boolean",
+      "title": "Enabling markdown in user profile",
+      "default": true
+    },
+    "calls.isEnabled": {
+      "type": "boolean",
+      "title": "Enable calls",
+      "description": "if true = calls are enable for users",
+      "default": true
+    },
+    "calls.isAudioCallsEnabled": {
+      "type": "boolean",
+      "title": "Enable audio calls",
+      "description": "if true = audio calls are enable for users",
+      "default": true
+    },
+    "calls.isVideoCallsEnabled": {
+      "type": "boolean",
+      "title": "Enable video calls",
+      "description": "if true = video calls are enable for users",
+      "default": true
+    },
+    "calls.isExternalCallsEnabled": {
+      "type": "boolean",
+      "title": "Enable external phone calls",
+      "description": "if true = external phone calls are enable for users",
+      "default": false
+    },
+    "calls.history.isFeatureEnabled": {
+      "type": "boolean",
+      "title": "Enable calls history feature",
+      "description": "if true = the call history feature is enabled for users, otherwise it is hidden at all",
+      "default": true
+    },
+    "calls.history.isAvailable": {
+      "type": "boolean",
+      "title": "Enable calls history screen",
+      "description": "if true = the call history screen is enabled for users, otherwise the placeholder will be shown",
+      "default": true
+    },
+    "calls.isScreenSharingEnabled": {
+      "type": "boolean",
+      "title": "Enable screen sharing in calls",
+      "description": "if true = user can show screen in modern browsers",
+      "default": true
+    },
+    "calls.metricsInterval": {
+      "type": "integer",
+      "title": "An interval for WebRtc metrics collecting",
+      "description": "An interval in ms at which metrics from WebRtc will be collected. 0 value means that metrics will be collected only at the call end.",
+      "default": 10000
+    },
+    "global.confidentialPolicy.URL": {
+      "type": "string",
+      "title": "URL of confidential policy webpage",
+      "default": null
+    },
+    "global.confidentialPolicy.version": {
+      "type": "string",
+      "title": "Version of confidential policy",
+      "default": null
+    },
+    "targeting.enabled": {
+      "type": "boolean",
+      "title": "Enable ability of target messages",
+      "default": false
+    },
+    "targeting.schema": {
+      "type": "string",
+      "title": "Schema of targeting form",
+      "description": "JSON with description of UI schema for targeting form",
+      "default": null
+    },
+    "chat.media.interactiveElements.maxWidgetCount": {
+      "type": "integer",
+      "title": "Maximum count of interactive widgets in one group",
+      "default": 10
+    },
+    "chat.media.interactiveElements.maxGroupCount": {
+      "type": "integer",
+      "title": "Maximum count of interactive media groups in one message",
+      "default": 10
+    },
+    "chat.media.interactiveElements.maxWidgetCharCount": {
+      "type": "integer",
+      "title": "Maximum count of characters in one interactive widget",
+      "default": 32
+    },
+    "chat.media.interactiveElements.maxGroupTitleCharCount": {
+      "type": "integer",
+      "title": "Maximum count of characters in title of interactive media group",
+      "default": 128
+    },
+    "chat.media.interactiveElements.maxGroupDescCharCount": {
+      "type": "integer",
+      "title": "Maximum count of characters in description of interactive media group",
+      "default": 256
+    },
+    "sberdisk.isEnabled": {
+      "type": "boolean",
+      "title": "Enable SberDisk integration",
+      "default": "false"
+    },
+    "chat.audioMessages.isEnabled": {
+      "type": "boolean",
+      "title": "Enable audio messages",
+      "default": false
+    },
+    "chat.audioMessages.isTranscribingEnabled": {
+      "type": "boolean",
+      "title": "Enable transcribing",
+      "default": false
+    },
+    "search.users.secondaryInfo.customProfileKey": {
+      "type": "string",
+      "title": "Add additional info to second line of user in search result",
+      "default": null
+    },
+    "chat.messages.delete.isEnabled": {
+      "type": "boolean",
+      "title": "Activates deletion for messages",
+      "default": false
+    },
+    "chat.messages.edit.isEnabled": {
+      "type": "boolean",
+      "title": "Activates editing for messages",
+      "default": false
+    },
+    "dialogs.favorite.isEnabled": {
+      "type": "boolean",
+      "title": "Activates send messages to yourself",
+      "default": false
+    },
+    "releaseNotes.isEnabled": {
+      "type": "boolean",
+      "title": "Enable release notes",
+      "default": false
+    },
+    "messaging.maxMentions": {
+      "type": "integer",
+      "title": "The maximum number of mentions per message",
+      "default": 5
+    },
+    "metrics.isEnabled": {
+      "type": "boolean",
+      "title": "Enables gathering and sending metrics",
+      "default": false
+    },
+    "typing.isEnabled": {
+      "type": "boolean",
+      "title": "Activates processing/emitting typingStates",
+      "default": false
+    },
+    "onlineStatus.isEnabled": {
+      "type": "boolean",
+      "title": "Activates processing/emitting onlineStates",
+      "default": false
+    },
+    "typing.timeout": {
+      "type": "integer",
+      "title": "UpdateStopTypingTimeout in MS",
+      "description": "Timeout in milliseconds: client should resend StartTyping with delay = 'typing.timeout' / 2, to inform server that client is still typing",
+      "default": 10000
+    },
+    "onlineStatus.timeout": {
+      "type": "integer",
+      "title": "UpdateUserLastSeen in MS",
+      "description": "Timeout in milliseconds: 1) client resend ChangeMyOnline with delay = 'onlineStatus.timeout' / 2; 2) client/server set peer Offline with delay 'onlineStatus.timeout', if new event UserLastSeen wouldn't receive",
+      "default": 90000
+    },
+    "weakMessaging.isEnabled": {
+      "type": "boolean",
+      "title": "Activates processing weakMessaging",
+      "default": false
+    },
+     "attachments.voiceMessages.isEnabled": {
+      "type": "boolean",
+      "title": "Activates voice messages in attachments",
+      "default": false
+    },
+    "links.preview.isEnabled": {
+      "type": "boolean",
+      "title": "Activates links preview",
+      "default": false
+    }
+  }
+}

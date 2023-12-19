@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+package dialog;
+
+// Parameter Syncronization across devices. Can be used for simple sync
+// across devices without rewriting server side code.
+
+import "google/protobuf/wrappers.proto";
+import "google/api/annotations.proto";
+import "definitions.proto";
+import "miscellaneous.proto";
+import "scalapb/scalapb.proto";
+
+option go_package = "dialog";
+option java_package = "im.dlg.grpc.services";
+
+// Syncing Parameter
+message Parameter {
+    string key = 1 [(dlg).log="visible"]; /// Key of parameter
+    string value = 2 [(dlg).log="hidden"]; /// Value of parameter
+    int64 clock = 3 [(dlg).log="visible"]; /// last modification date
+}
+
+// Getting Parameters
+message RequestGetParameters {
+    option (scalapb.message).extends = "im.dlg.grpc.GrpcRequest";
+    int64 from_clock = 1;
+}
+
+message ResponseGetParameters {
+    option (scalapb.message).extends = "im.dlg.grpc.GrpcResponse";
+    repeated Parameter parameters = 1;
+}
+
+// Change parameter value
+message RequestEditParameter {
+    option (scalapb.message).extends = "im.dlg.grpc.GrpcRequest";
+    string key = 1 [(dlg).log="visible"];
+    google.protobuf.StringValue value = 2 [(dlg).log="hidden"];
+    int64 clock = 3 [(dlg).log="visible"]; /// current known clock
+}
+
+message FeatureFlag {
+    string key = 1 [(dlg).log="visible"];
+    string value = 2 [(dlg).log="visible"];
+    int64 clock = 3 [(dlg).log="visible"];
+}
+
+message RequestFeatureFlags {
+    option (scalapb.message).extends = "im.dlg.grpc.GrpcRequest";
+    int64 from_clock = 1;
+}
+
+message ResponseFeatureFlags {
+    option (scalapb.message).extends = "im.dlg.grpc.GrpcResponse";
+    repeated FeatureFlag feature_config = 1;
+}
+
+message UpdateFeatureFlagChanged {
+    FeatureFlag feature = 1 [(dlg).log="visible"];
+}
+
+// Update about parameter change
+message UpdateParameterChanged {
+    string key = 1 [(dlg).log="visible"]; /// deprecated use this field from parameter
+    google.protobuf.StringValue value = 2 [(dlg).log="hidden"]; /// deprecated use this field from parameter
+    Parameter parameter = 3; /// changed parameter
+}
+
+service ConfigSync {
+    rpc GetParameters (RequestGetParameters) returns (ResponseGetParameters) {
+        option (google.api.http) = {
+            post: "/v1/grpc/ConfigSync/GetParameters"
+            body: "*"
+        };
+    }
+    rpc EditParameter (RequestEditParameter) returns (ResponseSeq) {
+        option (google.api.http) = {
+            post: "/v1/grpc/ConfigSync/EditParameter"
+            body: "*"
+        };
+    }
+    rpc FeatureFlags (RequestFeatureFlags) returns (ResponseFeatureFlags) {
+        option (google.api.http) = {
+            post: "/v1/grpc/ConfigSync/FeatureFlags"
+            body: "*"
+        };
+    }
+}
